@@ -1,6 +1,6 @@
 # LidaRF
 
-This is the repository that contains source code for the [LidaRF website](https://siwensun.github.io//lidarf-project/).
+This is the repository that contains source code for the [LidaRF website](https://siwensun.github.io/lidarf-project/).
 
 If you find LidaRF useful for your work please cite:
 ```
