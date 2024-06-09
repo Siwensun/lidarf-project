@@ -30,7 +30,10 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+  <link rel="icon" href="./static/images/icon.png">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -89,17 +92,17 @@
           <h1 class="title is-1 publication-title">LidaRF: Delving into Lidar for Neural Radiance Field on Street Scenes</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=c6wKvwgAAAAJ&hl=en">Shanlin Sun</a>,</span> <!-- <sup>1</sup> -->
+              <a href="https://scholar.google.com/citations?user=c6wKvwgAAAAJ&hl=en">Shanlin Sun</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="https://bbzh.github.io/">Bingbing Zhuang</a>,</span>
+              <a href="https://bbzh.github.io/">Bingbing Zhuang</a><sup>3</sup>,</span>
             <span class="author-block">
-              <a href="https://geekjzy.github.io/">Ziyu Jiang</a>,</span>
+              <a href="https://geekjzy.github.io/">Ziyu Jiang</a><sup>3</sup>,</span>
             <span class="author-block">
-              <a href="https://sites.google.com/site/buyuliu911/home">Buyu Liu</a></span>
+              <a href="https://sites.google.com/site/buyuliu911/home">Buyu Liu</a><sup>3</sup></span>
             <span class="author-block">
-                <a href="https://ics.uci.edu/~xhx/">Xiaohui Xie</a></span>
+                <a href="https://ics.uci.edu/~xhx/">Xiaohui Xie</a><sup>1</sup></span>
             <span class="author-block">
-                <a href="https://cseweb.ucsd.edu/~mkchandraker/">Manmohan Chandraker</a></span>
+                <a href="https://cseweb.ucsd.edu/~mkchandraker/">Manmohan Chandraker</a><sup>2,3</sup></span>
           </div>
 
           <div class="is-size-5 publication-authors">
@@ -130,15 +133,15 @@
                 </a>
               </span>
               <!-- Video Link. -->
-              <!-- <span class="link-block">
-                <a href="https://www.youtube.com/watch?v="
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=SA5xADW2eJ0&t=4s"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-youtube"></i>
                   </span>
                   <span>Video</span>
                 </a>
-              </span> -->
+              </span>
               <!-- Code Link. -->
               <!-- <span class="link-block">
                 <a href="https://github.com/korrawe/harp"
@@ -159,7 +162,6 @@
                   <span>Data</span>
                   </a> -->
             </div>
-
           </div>
         </div>
       </div>
@@ -167,6 +169,224 @@
   </div>
 </section>
 
+<section class="hero teaser", style="margin-top: -20px;">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <!-- <figure class="content has-text-centered">
+        <img src="./static/images/teaser.png"
+                 class="column is-6 is-offset-5 has-text-centered"
+                 alt="Teaser image."
+                />
+      </figure> -->
+      <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/images/teaser.mp4"
+                type="video/mp4">
+      </video>
+      <h2 class="subtitle has-text-centered">
+        <b> LidaRF </b> can accurately reconstruct the original sensor data with little to no artifacts.
+        We can also move the self-driving vehicle’s viewpoint to the left, right, or change the camera sensor’s position, elevating it or lowering it.
+        Built upon the well-known nerfacto model, our research proposes three contributions: <b>(1) Lidar encoding, (2) Robust depth supervision and (3) Augmented view supervision.</b>
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="section"> -->
+  <section class="hero is-light is-small">
+    <div class="container is-max-desktop">
+      <br>
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Photorealistic simulation plays a crucial role in applications such as autonomous driving, where advances in neural radiance fields (NeRFs) may allow better scalability through the automatic creation of digital 3D assets.
+              However, reconstruction quality suffers on street scenes due to largely collinear camera motions and sparser samplings at higher speeds.
+              On the other hand, the application often demands rendering from camera views that deviate from the inputs to accurately simulate behaviors like lane changes.
+              In this paper, we propose several insights that allow a better utilization of Lidar data to improve NeRF quality on street scenes. First, our framework learns a geometric scene representation from Lidar, which are fused with the implicit grid-based representation for radiance decoding, thereby supplying stronger geometric information offered by explicit point cloud. Second, we put forth a robust occlusion-aware depth supervision scheme, which allows utilizing densified Lidar points by accumulation. Third, we generate augmented training views from Lidar points for further improvement. Our insights translate to largely improved novel view synthesis under real driving scenes.
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+      <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/SA5xADW2eJ0?si=xDg5Z3T9m9eJk3Ht"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+  <br/>
+</section>
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/heWXQdIjSzs?si=QDc62aFZW8uLj-e3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+
+<section class="hero is-small", style="margin-bottom: 40px;">
+  <div class="container is-max-desktop">
+    <!-- Lidar Encoding -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3", style="margin-top: 30px;">Lidar Encoding</h2>
+        <div class="content has-text-justified">
+          <h4>Method</h4>
+          <ul>
+            <li>Lidar holds strong potential for <b>geometric guidance;</b></li>
+            <li>Lidar encoding through <b>3D sparse CNN</b> has proven powerful in 3D perception framework;</li>
+            <li>Aggregate neighboring Lidar features with <b>inverse-distance weighting</b>;</li>
+            <li><b>Fuse</b> Lidar encoding and hash grid feature.</li>
+          </ul>
+          <figure  class="content has-text-centered">
+            <img src="./static/images/lidar_encoding.png"
+                   class="column is-10 is-offset-0 has-text-centered"
+                   alt="Guidance problem."
+                   />
+          </figure >
+          <h4>Ablation Study</h4>
+          <ul>
+            <li>Lidar encoding is beneficial in modelling <b>sharp textures</b>, e.g. power lines. This enhancement stems from our sparse convolution-based architecture, which is resilient to Lidar point noise and density variations;</li>
+            <li>Our proposed sparse convolution based Lidar encoding is <b>better</b> than MLP or PointNet++.</li>
+          </ul>
+          <figure  class="content has-text-centered">
+            <img src="./static/images/lidar_encoding_ablation.png"
+                   class="column is-12 is-offset-0 has-text-centered"
+                   alt="Guidance problem."
+                   />
+          </figure >
+        </div>
+      </div>
+    </div>
+    <hr>
+    <!-- Lidar Encoding -->
+
+    <!-- Robust Depth Supervision -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3", style="margin-top: 10px;">Robust Depth Supervision</h2>
+        <div class="content has-text-justified">
+          <h4>Method</h4>
+          <ul>
+            <li><b>Issue</b>: Inter-points occlusion dut to the camera-Lidar displacement;</li>
+            <li><b>Goal</b>: Discard fake depth supervision adaptively;</li>
+            <li><b>Curriculum learning</b>: The model initially trains with closer, more reliable depth data, which are less prone to occlusion. As training progresses, the model gradually begins to incorporate more distant depth data.  </li>
+          </ul>
+          <figure  class="content has-text-centered">
+            <img src="./static/images/robust_ds.png"
+                   class="column is-10 is-offset-0 has-text-centered"
+                   alt="Guidance problem."
+                   />
+          </figure >
+          <h4>Ablation Study</h4>
+          <ul>
+            <li><p>Under the supervision of \( \mathcal{L}_{ds}^1 \), which utilizes single-frame Lidar depth maps known for their sparsity and reduced occlusions, the rendered depths exhibit <b>high accuracy in texture-rich areas</b> (as indicated by the yellow boxes).
+              However, this accuracy significantly <b>diminishes in regions with thin structures</b>, due to a lack of abundant geometric guidance, as observed in the red boxes;</p></li>
+            <li><p>The supervision with \( \mathcal{L}_{ds}^10 \), involving with noisy Lidar depth maps accumulated from 10 adjacent frames, leads to rendered depths that display <b>noticeable noise</b>;</p></li>
+            <li><p>Employing our proposed \( \mathcal{L}_{ds}^{robust} \), our method effectively leverages denser depth maps for the <b>reconstruction of intricate structures</b> (highlighted in red boxes), as well as <b>some occluded depths</b> (noted in yellow boxes).</p></li>
+          </ul>
+          <figure  class="content has-text-centered">
+            <img src="./static/images/ds_ablation.png"
+                   class="column is-10 is-offset-0 has-text-centered"
+                   alt="Guidance problem."
+                   />
+          </figure >
+        </div>
+      </div>
+    </div>
+    <hr>
+    <!-- Robust Depth Supervision -->
+
+    <!-- Augmented View Supervision -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3", style="margin-top: 10px">Augmented View Supervision</h2>
+        <div class="content has-text-justified">
+          <h4>Method</h4>
+          <ul>
+            <li>Colorize Lidar points in each Lidar frame and accumulate colorized Lidar points;</li>
+            <li>Project them to the augmented views. These augmented training views are derived from existing ones, by introducing stochastic perturbations to their camera centers, with some shifting magnitude;</li>
+            <li>Apply the fore-mentioned supervision scheme to exclude occluded Lidar points online.</li>
+          </ul>
+          <figure  class="content has-text-centered">
+            <img src="./static/images/aug_view.png"
+                   class="column is-10 is-offset-0 has-text-centered"
+                   alt="Guidance problem."
+                   />
+          </figure >
+          <h4>Ablation Study</h4>
+          <ul>
+            <li>Largely improve rendering quality on the regions which are scarcely captured in the raw training data.</li>
+          </ul>
+          <figure  class="content has-text-centered">
+            <img src="./static/images/aug_view_ablation.png"
+                   class="column is-9 is-offset-0 has-text-centered"
+                   alt="Guidance problem."
+                   />
+          </figure >
+        </div>
+      </div>
+    </div>
+    <!-- Augmented View Supervision -->
+  </div>
+</section>
+<hr>
+
+<section class="hero is-small">
+  <div class="container is-max-desktop">
+    <!-- Pandaset -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3", style="margin-top: 30px;">Compare with SoTA</h2>
+        <div class="content has-text-justified">
+          <h4>PandaSet Dataset</h4>
+          <figure  class="content has-text-centered">
+            <img src="./static/images/vis_comp_pandaset.png"
+                   class="column is-14 is-offset-0 has-text-centered"
+                   alt="Guidance problem."
+                   />
+          </figure >
+        </div>
+      </div>
+    </div>
+    <!-- Pandaset -->
+
+    <div class="columns is-centered">
+
+      <!-- Argoverse -->
+      <div class="column">
+        <div class="content">
+          <h4>Argoverse Dataset</h4>
+          <figure  class="content has-text-centered">
+            <img src="./static/images/vis_comp_argoverse.png"
+                   class="column has-text-centered"
+                   alt="Guidance problem."
+                   />
+          </figure >
+        </div>
+      </div>
+      <!-- Argoverse -->
+
+      <!-- Nuscenes -->
+      <div class="column">
+        <div class="content">
+          <h4>NuScenes Dataset</h4>
+          <figure  class="content has-text-centered">
+            <img src="./static/images/vis_comp_nuscenes.png"
+                   class="column has-text-centered"
+                   alt="Guidance problem."
+                   />
+          </figure >
+        </div>
+      </div>
+      <!-- Nuscenes -->
+
+    </div>
+  </div>
+</section>
 
 
 <section class="section" id="BibTeX">
