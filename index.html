@@ -227,123 +227,199 @@
 </section>
 <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/heWXQdIjSzs?si=QDc62aFZW8uLj-e3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
 
-<section class="hero is-small", style="margin-bottom: 40px;">
+
+<section class="hero is-small">
+
   <div class="container is-max-desktop">
     <!-- Lidar Encoding -->
+    <h2 class="title is-3", style="margin-top: 40px">Lidar Encoding</h2>
     <div class="columns is-centered has-text-centered">
+      <!-- Method. -->
       <div class="column is-full-width">
-        <h2 class="title is-3", style="margin-top: 30px;">Lidar Encoding</h2>
         <div class="content has-text-justified">
-          <h4>Method</h4>
-          <ul>
-            <li>Lidar holds strong potential for <b>geometric guidance;</b></li>
-            <li>Lidar encoding through <b>3D sparse CNN</b> has proven powerful in 3D perception framework;</li>
-            <li>Aggregate neighboring Lidar features with <b>inverse-distance weighting</b>;</li>
-            <li><b>Fuse</b> Lidar encoding and hash grid feature.</li>
-          </ul>
-          <figure  class="content has-text-centered">
+          <h3 class="title is-4">Method</h3>
+          <p>
+            <ul>
+              <li>Lidar holds strong potential for <b>geometric guidance;</b></li>
+              <li>Lidar encoding through <b>3D sparse CNN</b> has proven powerful in 3D perception framework;</li>
+              <li>Aggregate neighboring Lidar features with <b>inverse-distance weighting</b>;</li>
+              <li><b>Fuse</b> Lidar encoding and hash grid feature.</li>
+            </ul>
+          </p>
+          <figure  class="content has-text-centered", style="margin-top: -10px;">
             <img src="./static/images/lidar_encoding.png"
                    class="column is-10 is-offset-0 has-text-centered"
                    alt="Guidance problem."
                    />
           </figure >
-          <h4>Ablation Study</h4>
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+
+    <!-- Effect. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h3 class="title is-4", style="margin-top: 0px;">Effect</h3>
+        <div class="content has-text-justified">
           <ul>
             <li>Lidar encoding is beneficial in modelling <b>sharp textures</b>, e.g. power lines. This enhancement stems from our sparse convolution-based architecture, which is resilient to Lidar point noise and density variations;</li>
             <li>Our proposed sparse convolution based Lidar encoding is <b>better</b> than MLP or PointNet++.</li>
           </ul>
-          <figure  class="content has-text-centered">
+          <figure  class="content has-text-centered", style="margin-top: -10px; margin-bottom: -10px;">
             <img src="./static/images/lidar_encoding_ablation.png"
                    class="column is-12 is-offset-0 has-text-centered"
                    alt="Guidance problem."
                    />
           </figure >
         </div>
+        <!--/ Effect. -->
       </div>
     </div>
+    <!--/ Lidar Encoding. -->
     <hr>
-    <!-- Lidar Encoding -->
+  </div>
 
+  <div class="container is-max-desktop">
     <!-- Robust Depth Supervision -->
-    <div class="columns is-centered has-text-centered">
+    <h2 class="title is-3", style="margin-top: 10px">Robust Depth Supervision</h2>
+    <div class="columns is-centered">
+      <!-- Method. -->
+      <div class="column">
+        <div class="content">
+          <h3 class="title is-4">Method</h3>
+          <p>
+            <ul>
+              <li><b>Issue</b>: Inter-points occlusion dut to the camera-Lidar displacement;</li>
+              <li><b>Goal</b>: Discard fake depth supervision adaptively;</li>
+              <li><b>Curriculum learning</b>: The model initially trains with closer, more reliable depth data, which are less prone to occlusion. As training progresses, the model gradually begins to incorporate more distant depth data; </li>
+              <li>Adopt URF loss for samples in <b>\( \mathcal{D}_\text{reliable}^{m} \)</b>.</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+      
+      <div class="column">
+        <!-- <h3 class="title is-4"></h3> -->
+        <div class="columns is-centered">
+          <div class="column content">
+            <figure  class="content", style="margin-top: -10px;">
+              <img src="./static/images/robust_ds.png"
+                     class="column is-14 is-offset-0 has-text-centered"
+                     alt="Guidance problem."
+                     />
+            </figure >
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Method. -->
+
+    <!-- Effect. -->
+    <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3", style="margin-top: 10px;">Robust Depth Supervision</h2>
+        <h3 class="title is-4", style="margin-top: -40px;">Effect</h3>
         <div class="content has-text-justified">
-          <h4>Method</h4>
-          <ul>
-            <li><b>Issue</b>: Inter-points occlusion dut to the camera-Lidar displacement;</li>
-            <li><b>Goal</b>: Discard fake depth supervision adaptively;</li>
-            <li><b>Curriculum learning</b>: The model initially trains with closer, more reliable depth data, which are less prone to occlusion. As training progresses, the model gradually begins to incorporate more distant depth data.  </li>
-          </ul>
-          <figure  class="content has-text-centered">
-            <img src="./static/images/robust_ds.png"
-                   class="column is-10 is-offset-0 has-text-centered"
-                   alt="Guidance problem."
-                   />
-          </figure >
-          <h4>Ablation Study</h4>
           <ul>
             <li><p>Under the supervision of \( \mathcal{L}_{ds}^1 \), which utilizes single-frame Lidar depth maps known for their sparsity and reduced occlusions, the rendered depths exhibit <b>high accuracy in texture-rich areas</b> (as indicated by the yellow boxes).
               However, this accuracy significantly <b>diminishes in regions with thin structures</b>, due to a lack of abundant geometric guidance, as observed in the red boxes;</p></li>
             <li><p>The supervision with \( \mathcal{L}_{ds}^10 \), involving with noisy Lidar depth maps accumulated from 10 adjacent frames, leads to rendered depths that display <b>noticeable noise</b>;</p></li>
             <li><p>Employing our proposed \( \mathcal{L}_{ds}^{robust} \), our method effectively leverages denser depth maps for the <b>reconstruction of intricate structures</b> (highlighted in red boxes), as well as <b>some occluded depths</b> (noted in yellow boxes).</p></li>
           </ul>
-          <figure  class="content has-text-centered">
+          <figure  class="content has-text-centered", style="margin-top: -10px; margin-bottom: -20px;">
             <img src="./static/images/ds_ablation.png"
                    class="column is-10 is-offset-0 has-text-centered"
                    alt="Guidance problem."
                    />
           </figure >
         </div>
+        <!--/ Effect. -->
       </div>
     </div>
+    <!--/ Robust Depth Supervision. -->
     <hr>
-    <!-- Robust Depth Supervision -->
+  </div>
 
+  <div class="container is-max-desktop">
     <!-- Augmented View Supervision -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3", style="margin-top: 10px">Augmented View Supervision</h2>
-        <div class="content has-text-justified">
-          <h4>Method</h4>
-          <ul>
-            <li>Colorize Lidar points in each Lidar frame and accumulate colorized Lidar points;</li>
-            <li>Project them to the augmented views. These augmented training views are derived from existing ones, by introducing stochastic perturbations to their camera centers, with some shifting magnitude;</li>
-            <li>Apply the fore-mentioned supervision scheme to exclude occluded Lidar points online.</li>
-          </ul>
-          <figure  class="content has-text-centered">
-            <img src="./static/images/aug_view.png"
-                   class="column is-10 is-offset-0 has-text-centered"
-                   alt="Guidance problem."
-                   />
-          </figure >
-          <h4>Ablation Study</h4>
-          <ul>
-            <li>Largely improve rendering quality on the regions which are scarcely captured in the raw training data.</li>
-          </ul>
-          <figure  class="content has-text-centered">
-            <img src="./static/images/aug_view_ablation.png"
-                   class="column is-9 is-offset-0 has-text-centered"
-                   alt="Guidance problem."
-                   />
-          </figure >
+    <h2 class="title is-3", style="margin-top: 10px">Augmented View Supervision</h2>
+    <div class="columns is-centered">
+      <!-- Method. -->
+      <div class="column">
+        <div class="content">
+          <h3 class="title is-4">Method</h3>
+          <p>
+            <ul>
+              <li><b>Colorize</b> Lidar points in each Lidar frame and <b>accumulate</b> colorized Lidar points;</li>
+              <li><b>Project</b> them to the augmented views. These augmented training views are derived from existing ones, by introducing <b>stochastic perturbations</b> to their camera centers, with some shifting magnitude;</li>
+              <li>Apply the fore-mentioned supervision scheme to <b>exclude</b> occluded Lidar points online.</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+      
+      <div class="column">
+        <h3 class="title is-4"></h3>
+        <div class="columns is-centered">
+          <div class="column content">
+            <figure  class="content", style="margin-top: -20px;">
+              <img src="./static/images/aug_view.png"
+                     class="column is-14 is-offset-0 has-text-centered"
+                     alt="Guidance problem."
+                     />
+            </figure >
+          </div>
         </div>
       </div>
     </div>
-    <!-- Augmented View Supervision -->
+    <!--/ Method. -->
+
+    <div class="columns is-centered">
+      <!-- Effect. -->
+      <div class="column">
+        <div class="content">
+          <h3 class="title is-4", style="margin-top: -5px;">Effect</h3>
+          <p>
+            <ul>
+              <li>Largely improve rendering quality on the regions which are scarcely captured in the raw training data.</li>
+            </ul>
+          </p>
+        </div>
+      </div>
+      
+      <div class="column">
+        <!-- <h3 class="title is-4"></h3> -->
+        <div class="columns is-centered">
+          <div class="column content">
+            <figure  class="content", style="margin-top: -5px; margin-bottom: -15px;">
+              <img src="./static/images/aug_view_ablation.png"
+                     class="column is-14 is-offset-0 has-text-centered"
+                     alt="Guidance problem."
+                     />
+            </figure >
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!--/ Effect. -->
+    <!--/ Augmented View Supervision. -->
+    <hr>
   </div>
+
 </section>
-<hr>
 
 <section class="hero is-small">
   <div class="container is-max-desktop">
+    <h2 class="title is-3", style="margin-top: 10px;">Results</h2>
     <!-- Pandaset -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3", style="margin-top: 30px;">Compare with SoTA</h2>
+
         <div class="content has-text-justified">
-          <h4>PandaSet Dataset</h4>
-          <figure  class="content has-text-centered">
+          <h3 class="title is-4", style="margin-top: -5px;">PandaSet Dataset</h3>
+          <figure  class="content has-text-centered", style="margin-top: -10px;">
             <img src="./static/images/vis_comp_pandaset.png"
                    class="column is-14 is-offset-0 has-text-centered"
                    alt="Guidance problem."
@@ -359,8 +435,8 @@
       <!-- Argoverse -->
       <div class="column">
         <div class="content">
-          <h4>Argoverse Dataset</h4>
-          <figure  class="content has-text-centered">
+          <h3 class="title is-4", style="margin-top: -5px;">Argoverse Dataset</h3>
+          <figure  class="content has-text-centered", style="margin-top: -15px;">
             <img src="./static/images/vis_comp_argoverse.png"
                    class="column has-text-centered"
                    alt="Guidance problem."
@@ -373,9 +449,18 @@
       <!-- Nuscenes -->
       <div class="column">
         <div class="content">
-          <h4>NuScenes Dataset</h4>
-          <figure  class="content has-text-centered">
+          <h3 class="title is-4", style="margin-top: -5px;">NuScenes Dataset</h3>
+          <figure  class="content has-text-centered", style="margin-top: -15px;">
             <img src="./static/images/vis_comp_nuscenes.png"
+                   class="column has-text-centered"
+                   alt="Guidance problem."
+                   />
+          </figure >
+        </div>
+        <div class="content">
+          <h3 class="title is-4", style="margin-top: -5px">Ablation Study</h3>
+          <figure  class="content has-text-centered", style="margin-top: -20px">
+            <img src="./static/images/ablation_study.png"
                    class="column has-text-centered"
                    alt="Guidance problem."
                    />
@@ -385,6 +470,25 @@
       <!-- Nuscenes -->
 
     </div>
+
+    <!-- Application -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+
+        <div class="content has-text-justified">
+          <h3 class="title is-4", style="margin-top: 0px">As Background Simulation</h3>
+          <figure  class="content has-text-centered", style="margin-top: -20px; margin-bottom: -15px;">
+            <img src="./static/images/teaser.gif"
+                  class="column is-14 is-offset-0 has-text-centered"
+                  alt="Guidance problem."
+                  />
+          </figure >
+        </div>
+      </div>
+    </div>
+    <!-- Application -->
+
+    <hr>
   </div>
 </section>
 
